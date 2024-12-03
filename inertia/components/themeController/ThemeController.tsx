@@ -1,9 +1,14 @@
-function ThemeController({theme, setTheme}:any) {
+interface ThemeControllerProps {
+  theme: string;
+  setTheme: (theme: string) => void;
+}
 
+function ThemeController({ theme, setTheme }: ThemeControllerProps) {
   const handleChangeTheme = () => {
     const newTheme = theme === 'emerald' ? 'dim' : 'emerald';
     setTheme(newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
   };
 
   return (

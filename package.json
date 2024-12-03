@@ -1,5 +1,5 @@
 {
-  "name": "ASK_R",
+  "name": "ask-r",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -30,7 +30,8 @@
     "#tests/*": "./tests/*.js",
     "#start/*": "./start/*.js",
     "#config/*": "./config/*.js",
-    "#enum/*": "./app/enum/*.js"
+    "#enum/*": "./app/enum/*.js",
+    "#types/*": "./app/types/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",

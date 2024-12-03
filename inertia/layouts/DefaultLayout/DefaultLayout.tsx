@@ -1,23 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
-import HeaderLayout from '../HeaderLayout/HeaderLayout';
+import HeaderLayout from '~/components/headers/MainHeader';
 import BackgroundLayout from '../BackgroundLayout/BackgroundLayout';
 
-function DefaultLayout(children:any) {
+function DefaultLayout( children: React.ReactNode ) {
 
-  const [theme, setTheme] = useState('emerald');
-
+  const initialTheme = useMemo(() => localStorage.getItem('theme') || 'emerald', []);
+  const [theme, setTheme] = useState(initialTheme);
 
   useEffect(() => {
-    if (theme) {
-      setTheme(theme);
-    }
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <BackgroundLayout theme={theme}/>
-      <HeaderLayout theme={theme} setTheme={setTheme}/>
+      <BackgroundLayout theme={theme} />
+      <HeaderLayout theme={theme} setTheme={setTheme} />
       <main className='flex flex-1'>
         {children}
       </main>
