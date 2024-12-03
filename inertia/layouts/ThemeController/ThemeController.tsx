@@ -1,5 +1,3 @@
-import React from 'react';
-
 function ThemeController({theme, setTheme}:any) {
 
   const handleChangeTheme = () => {

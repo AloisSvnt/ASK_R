@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ThemeController from '../ThemeController/ThemeController';
 
 function HeaderLayout({theme, setTheme}:any) {
