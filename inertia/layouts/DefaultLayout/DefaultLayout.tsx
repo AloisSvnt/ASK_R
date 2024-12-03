@@ -15,10 +15,10 @@ function DefaultLayout(children:any) {
   }, [theme]);
 
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
       <BackgroundLayout theme={theme}/>
       <HeaderLayout theme={theme} setTheme={setTheme}/>
-      <main className='flex h-[300vw]'>
+      <main className='flex flex-1'>
         {children}
       </main>
     </div>
