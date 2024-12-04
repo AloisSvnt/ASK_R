@@ -5,6 +5,7 @@ function Login() {
   const { data, setData, post, processing } = useForm({
     email: "",
     password: "",
+    remember_me: false,
   });
 
   function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -40,6 +41,10 @@ function Login() {
                 clipRule="evenodd" />
             </svg>
             <input type="password" className="grow" name="password" value={data.password} onChange={(e) => setData('password', e.target.value)} />
+          </label>
+          <label className="label cursor-pointer">
+            <span className="label-text">Remember me</span>
+            <input type="checkbox" checked={data.remember_me} onChange={(e) => setData('remember_me', e.target.checked)} className="checkbox" />
           </label>
           <button className="btn btn-neutral" type="submit" disabled={processing}>Login</button>
         </form>

@@ -10,7 +10,7 @@ export default class SessionController {
     const { email, password } = request.only(['email', 'password'])
     try {
       const user = await User.verifyCredentials(email, password)
-      await auth.use('web').login(user)
+      await auth.use('web').login(user, !!request.input('remember_me'))
       session.flash({ success: 'You are logged in.' })
 
       return response.redirect('/')
