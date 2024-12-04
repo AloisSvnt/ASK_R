@@ -12,7 +12,7 @@ export const registerValidator = vine.compile(
         const user = await db.from('users').where('email', value).first()
         return !user
       }),
-    password: vine.string().minLength(8).maxLength(32).confirmed(),
+    password: vine.string().minLength(8).maxLength(32).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/).confirmed(),
     password_confirmation: vine.string().minLength(8).maxLength(32),
     role: vine.enum(Object.values(Roles))
   })

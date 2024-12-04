@@ -1,20 +1,22 @@
 import { Roles } from "#enum/Role";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 function Register() {
 
+  const {props} = usePage();
+
+  
   const { data, setData, post, processing, errors } = useForm({
     firstName:'',
     lastName:'',
     email:'',
     password:'',
     password_confirmation:'',
-    roles: Roles.CLIENT
+    role: Roles.CLIENT
   })
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(data);
     post("/register");
   }
 
@@ -35,6 +37,7 @@ function Register() {
             </svg>
             <input type="text" className="grow" placeholder="Firstname" value={data.firstName} onChange={(e) => setData('firstName', e.target.value)}/>
           </label>
+          { errors.firstName && <div className="text-red-500">{errors.firstName}</div> }
           <label className="input input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +49,7 @@ function Register() {
             </svg>
             <input type="text" className="grow" placeholder="Lastname" value={data.lastName} onChange={(e) => setData('lastName', e.target.value)}/>
           </label>
+          { errors.lastName && <div className="text-red-500">{errors.lastName}</div> }
           <label className="input input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +61,7 @@ function Register() {
             </svg>
             <input type="email" name="email" value={data.email} onChange={(e) => setData('email', e.target.value)} placeholder="Email"/>
           </label>
+          { errors.email && <div className="text-red-500">{errors.email}</div> }
           <label className="input input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -70,6 +75,7 @@ function Register() {
             </svg>
             <input type="password" className="grow" name="password" value={data.password} onChange={(e) => setData('password', e.target.value)} />
           </label>
+          {errors.password && <div className="text-red-500">{errors.password}</div>}
           <label className="input input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,9 +89,19 @@ function Register() {
             </svg>
             <input type="password" className="grow" name="password_confirmation" value={data.password_confirmation} onChange={(e) => setData('password_confirmation', e.target.value)} />
           </label>
+          {errors.password_confirmation && <div className="text-red-500">{errors.password_confirmation}</div>}
+          <span className="text-xs">
+            <h3>Your password must meet the following requirements:</h3>
+            <ul className="list-disc list-inside">
+              <li>Contains at least 8 characters.</li>
+              <li>Includes at least one uppercase letter.</li>
+              <li>Includes at least one lowercase letter.</li>
+              <li>Contains at least one number.</li>
+              <li>Contains at least one special character (e.g., !@#$%^&*).</li>
+            </ul>
+          </span>
           <button className="btn btn-neutral" type="submit" disabled={processing}>Register</button>
 
-          {/* { errors ?? <div className="text-red-500">{errors}</div> } */}
         </form>
       </div>
     </div>
