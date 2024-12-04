@@ -44,6 +44,7 @@ export default class SessionController {
       return response.redirect('/register')
     }
   }
+  
   async logout({ auth, response, session }: HttpContext) {
     await auth.use('web').logout()
     session.flash({ success: 'You have been logged out.' })
