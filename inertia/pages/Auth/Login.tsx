@@ -2,7 +2,7 @@ import { useForm } from "@inertiajs/react";
 
 function Login() {
 
-  const { data, setData, post, processing } = useForm({
+  const { data, setData, post, processing, errors } = useForm({
     email: "",
     password: "",
     remember_me: false,
@@ -14,7 +14,7 @@ function Login() {
   }
 
   return (
-<div className="flex-grow flex justify-center items-center">
+    <div className="flex-grow flex justify-center items-center">
       <div className="w-full max-w-96 flex flex-col gap-2 p-6 bg-base-content/20 rounded-md">
         <h1>Login</h1>
         <form onSubmit={submit} className="flex flex-col gap-3">
@@ -47,6 +47,8 @@ function Login() {
             <input type="checkbox" checked={data.remember_me} onChange={(e) => setData('remember_me', e.target.checked)} className="checkbox" />
           </label>
           <button className="btn btn-neutral" type="submit" disabled={processing}>Login</button>
+
+          {/* { errors ?? <div className="text-red-500">{errors}</div> } */}
         </form>
       </div>
     </div>

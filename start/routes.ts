@@ -17,14 +17,14 @@ router
 .group(() => {
   router.get('login', [SessionController, 'showLogin'])
   router.post('login', [SessionController, 'login'])
-  router.get('register', [SessionController, 'showRegister']).as('register.show')
-  router.post('register', [SessionController, 'register']).as('register')
+  router.get('register', [SessionController, 'showRegister'])
+  router.post('register', [SessionController, 'register'])
 })
 .use(middleware.guest())
 
 router
 .group(() => {
   router.on('/').renderInertia('home')
-  router.get('/logout', [SessionController, 'logout']).as('logout')
+  router.get('/logout', [SessionController, 'logout'])
 })
 .use(middleware.auth())

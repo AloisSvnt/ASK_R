@@ -1,5 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
+import { loginValidator } from '#validators/Auth/login'
+import { registerValidator } from '#validators/Auth/register'
 
 export default class SessionController {
   async showLogin({ inertia }: HttpContext) {
@@ -7,7 +9,7 @@ export default class SessionController {
   }
 
   async login({ request, auth, response, session }: HttpContext) {
-    const { email, password } = request.only(['email', 'password'])
+    const { email, password } = await request.validateUsing(loginValidator)
     try {
       const user = await User.verifyCredentials(email, password)
       await auth.use('web').login(user, !!request.input('remember_me'))
@@ -27,21 +29,18 @@ export default class SessionController {
   }
 
   async register({ request, auth, response, session }: HttpContext) {
-    const { email, password, firstName, lastName } = request.only([
-      'email',
-      'password',
-      'firstName',
-      'lastName',
-    ])
+    console.log('Registering...')
+    const { email, password, password_confirmation, firstName, lastName } = await request.validateUsing(registerValidator);
+    console.log('Registering:', email, password, firstName, lastName)
     try {
-      const user = await User.create({ email, password, firstName, lastName })
-      await auth.use('web').login(user)
-      session.flash({ success: 'You are registered and logged in.' })
-      return response.redirect('/')
+      const user = await User.create({ email, password, firstName, lastName });
+      await auth.use('web').login(user);
+      session.flash({ success: 'You are registered and logged in.' });
+      return response.redirect('/');
     } catch (errors) {
-      console.error('Register error:', errors)
-      session.flash({ errors: 'There was a problem registering your account.' })
-      return response.redirect('/register')
+      console.error('Register error:', errors);
+      session.flash({ errors: 'There was a problem registering your account.' });
+      return response.redirect('/register');
     }
   }
   
