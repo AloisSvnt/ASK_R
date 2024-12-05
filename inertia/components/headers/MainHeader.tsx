@@ -16,16 +16,24 @@ function HeaderLayout({ theme, setTheme }: HeaderLayoutProps) {
         <div className="flex-1">
           <Link href="/" className="btn btn-ghost text-xl">Adonis JS</Link>
         </div>
-        <div className="flex-none">
+        <div className="flex-none gap-2">
         { user && <p>Welcome {user.firstName} {user.lastName}</p> }
-          <ul className="menu menu-horizontal px-1">
-            <li>
+          <ul className="menu menu-horizontal px-1 gap-2">
               { user ?
-                <Link className='btn btn-ghost' href="/logout">Logout</Link> :
-                <Link className='btn btn-ghost' href="/login">Login</Link>
+              (
+                <li>
+                  <Link className='btn btn-ghost' href="/logout">Logout</Link>  
+                </li>
+              ) :
+                (<>
+                  <li>
+                    <Link className='btn btn-ghost' href="/login">Login</Link>
+                  </li>
+                  <li>
+                    <Link className='btn btn-ghost' href='/register'>Register</Link>
+                  </li>
+                </>)
               }
-            </li>
-            <li></li>
           </ul>
           <ThemeController theme={theme} setTheme={setTheme} />
         </div>
