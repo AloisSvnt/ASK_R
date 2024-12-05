@@ -1,5 +1,5 @@
 import { Roles } from "#enum/Role";
-import { useForm, usePage } from "@inertiajs/react";
+import { useForm, usePage, Link } from "@inertiajs/react";
 
 function Register() {
 
@@ -103,6 +103,10 @@ function Register() {
           <button className="btn btn-neutral" type="submit" disabled={processing}>Register</button>
 
         </form>
+        <div className="pt-2 flex flex-col gap-2">
+          <p className="text-sm">Already have an account?</p>
+          <Link className="btn btn-secondary w-full" href="/login">Log in here</Link>
+      </div>
       </div>
     </div>
   );
