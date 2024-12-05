@@ -1,10 +1,7 @@
 import { Roles } from "#enum/Role";
-import { useForm, usePage, Link } from "@inertiajs/react";
+import { useForm, Link } from "@inertiajs/react";
 
 function Register() {
-
-  const {props} = usePage();
-
   
   const { data, setData, post, processing, errors } = useForm({
     firstName:'',
