@@ -15,7 +15,7 @@ function Login() {
 
   return (
     <div className="flex-grow flex justify-center items-center">
-      <div className="w-full max-w-96 flex flex-col gap-4 p-6 bg-base-content/20 rounded-md">
+      <div className="w-full max-w-96 flex flex-col gap-2 px-3 py-6 md:p-6 bg-base-content/20 rounded-md">
         <h1>Login</h1>
         <form onSubmit={submit} className="flex flex-col gap-3">
           <label className="input input-bordered flex items-center gap-2">
