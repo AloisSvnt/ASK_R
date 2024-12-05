@@ -29,9 +29,7 @@ export default class SessionController {
   }
 
   async register({ request, auth, response, session }: HttpContext) {
-    console.log('Registering...')
     const { email, password, password_confirmation, firstName, lastName } = await request.validateUsing(registerValidator);
-    console.log('Registering:', email, password, firstName, lastName)
     try {
       const user = await User.create({ email, password, firstName, lastName });
       await auth.use('web').login(user);
