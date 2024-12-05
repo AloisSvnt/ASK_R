@@ -14,7 +14,7 @@ function HeaderLayout({ theme, setTheme }: HeaderLayoutProps) {
     <header>
       <div className="navbar">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Link href="/" className="btn btn-ghost text-xl">Adonis JS</Link>
         </div>
         <div className="flex-none">
         { user && <p>Welcome {user.firstName} {user.lastName}</p> }
