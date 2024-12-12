@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-git@github.com:Digital-Concept/ASK_R.git
+git clone git@github.com:Digital-Concept/ASK_R.git
 cd ASK_R
 npm install
 ```
